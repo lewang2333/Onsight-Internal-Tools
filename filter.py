@@ -21,7 +21,7 @@ class Item(object):
     def __str__(self):
         res = []
         for keyval in self.info.items():
-            res.append(" = ".join(keyval))
+            res.append(' = '.join(keyval))
         return '\n'.join(res)
 
 
@@ -50,8 +50,8 @@ def validate(item, words):
     res = []
     for keyval in item.info.items():
         if keyval[0].lower() in words:
-            res.append(" = ".join(keyval))
-    return '\n'.join(res)
+            res.append( keyval[0].replace(' ','') + '=\"' + keyval[1] + '\"')
+    return '        <Object ' + ' '.join(res) + ' />'
 
 if __name__ == '__main__':
     raw_data = read_data(argv[1])
@@ -60,8 +60,10 @@ if __name__ == '__main__':
     items = []
     for item_data in data_by_item:
         items.append(Item(item_data))
-    f = open("output.txt", 'w')
+    f = open("output.xml", 'w')
+    f.write('<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n')
+    f.write('    <' + argv[1].split('.')[0] + '>\n')
     for item in items:
-        f.write(validate(item, filter_words))
-        f.write("\n\n")
+        f.write(validate(item, filter_words) + '\n')
+    f.write('    </' + argv[1].split('.')[0] + '>')
     f.close()
