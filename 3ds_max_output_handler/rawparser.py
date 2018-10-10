@@ -29,6 +29,11 @@ def readItemsFile(fileName):
     """
     with open(fileName, 'r', encoding='utf-8') as f:
         data = f.read().strip()
+
+    # remove 3ds header
+    if data and ord(data[0]) == 65279:
+        data = data[1:]
+
     return data
 
 
