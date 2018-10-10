@@ -15,7 +15,7 @@ class Item:
         dict = OrderedDict({'No.': self.number})
         for line in s.split('\n'):
             att, val = line.strip().split(' = ')
-            dict[keyFormat(att)] = valFormat(val)
+            dict[keyFormat(att.strip())] = valFormat(val.strip())
         return dict
 
     def __str__(self):
