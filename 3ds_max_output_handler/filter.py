@@ -1,3 +1,4 @@
+import os
 from rawparser import *
 
 if __name__ == '__main__':
@@ -14,3 +15,5 @@ if __name__ == '__main__':
         for item in items:
             f.write(item.__str__())
         f.write(FOOTER)
+
+    os.remove(file)
