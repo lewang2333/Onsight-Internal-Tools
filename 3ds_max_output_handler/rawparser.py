@@ -1,6 +1,18 @@
+import os
+
 from item import *
 from format import *
 from const import *
+
+def getInputFiles():
+    '''
+    itype: None
+    rtype: The input file in this dir
+    '''
+    for file in os.listdir('.'):
+        if file.endswith('.txt') and file != 'filter.txt':
+            return file
+    raise Exception('No input file!')
 
 def itemParser(data):
     """
