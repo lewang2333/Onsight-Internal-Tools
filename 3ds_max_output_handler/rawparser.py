@@ -14,6 +14,7 @@ def getInputFiles():
             return file
     raise Exception('No input file!')
 
+
 def itemParser(data):
     """
     itype: String, raw data from input file
